@@ -1,0 +1,14 @@
+.questionBody {
+    border-radius: 1rem;
+    background-color: white;
+    padding: 1rem;
+    margin: 1rem;
+    position: relative;
+}
+.questionDelete {
+    position: absolute;
+    margin: 1rem;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}

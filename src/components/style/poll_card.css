@@ -1,0 +1,11 @@
+.pollCard{
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px rgb(199, 199, 199);
+    padding: 2rem;
+    text-align: center;
+    margin: 1rem 0 1rem 0;
+    background-color: white;
+}
+.pollCard:hover {
+    box-shadow: 5px 5px 5px rgb(199, 199, 199);
+}
