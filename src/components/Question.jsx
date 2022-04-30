@@ -1,9 +1,9 @@
 import React, { useState }  from 'react'
 import EditText from './EditText';
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryPie, VictoryTheme } from 'victory';
 import "../components/style/question.css"
 import Choice from './Choice';
 import { BASE_URL } from '../App';
+import Graphs from './Graphs';
 
 function Question(props) {
 
@@ -64,13 +64,13 @@ function Question(props) {
 
 
             <div>
-                <EditText textSize="2rem" pk={props.question.id} value={props.question.desc} onSave={updateQuestion}></EditText>
+                <EditText canEdit={!props.result} textSize="2rem" pk={props.question.id} value={props.question.desc} onSave={updateQuestion}></EditText>
                 <hr />
                 <ol type="a">
                     {props.question.choices.map((choice) => {
                         return (
                             <li key={choice.id}>
-                                <Choice totalVotes={totalVotes} token={props.token} choice={choice} fetchData={props.fetchData} ></Choice>
+                                <Choice result={props.result} totalVotes={totalVotes} token={props.token} choice={choice} fetchData={props.fetchData} ></Choice>
                             </li>
                         )
                     })}
@@ -83,21 +83,7 @@ function Question(props) {
 
 
             { props.question.choices.length != 0 &&
-                <div className="w-100 d-flex flex-column flex-sm-row">
-                <VictoryChart domainPadding={20} theme={VictoryTheme.material}>
-                    <VictoryAxis  tickValues={chartData.map((data) => data.index)}/>
-                    <VictoryAxis dependentAxis />
-                    <VictoryBar
-                        theme={VictoryTheme.material}
-                        x="index"
-                        y="votes"
-                        data={chartData}
-                        labels={chartData.map((data) => data.votes)}
-                    />
-                </VictoryChart>
-                <hr />
-                <VictoryPie theme={VictoryTheme.material} data={chartData} x="index" y="votes"></VictoryPie>
-            </div>
+                <Graphs chartData={chartData}></Graphs>
             }
 
             {/* Modal for adding a new choice */}

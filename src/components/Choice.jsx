@@ -48,7 +48,7 @@ function Choice(props) {
 
     return (
         <div className="choiceContainer" style={{position: "relative"}}>
-            <EditText onSave={updateChoice} pk={props.choice.id} value={props.choice.text}></EditText>
+            <EditText canEdit={!props.result} onSave={updateChoice} pk={props.choice.id} value={props.choice.text}></EditText>
             <div style={voteBarStyle}></div>
         </div>
     );

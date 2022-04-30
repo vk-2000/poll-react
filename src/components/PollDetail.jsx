@@ -8,7 +8,7 @@ import Navbar from './Navbar';
 import Question from './Question';
 import "../components/style/poll_detail.css"
 
-function PollDetail() {
+function PollDetail(props) {
     const [data, setData] = useState([])
     const [token, setToken] = useState("")
     const [newQuestion, setNewQuestion] = useState("")
@@ -126,13 +126,6 @@ function PollDetail() {
         })
     }
 
-    
-
-    
-    
-
-    
-    
 
     
     return (
@@ -142,10 +135,10 @@ function PollDetail() {
             
 
             <div className="col col-md-8 mx-auto">
-                <div className="w-100 container">
-                    <EditText pk={data.id} onSave={updatePollName} textSize="2rem" value={data.name}></EditText>
+                <div className="w-100 container p-0">
+                    <EditText canEdit={!props.result} pk={data.id} onSave={updatePollName} textSize="2rem" value={data.name}></EditText>
 
-                    <div className=" container controlPanel d-flex justify-content-between flex-column flex-sm-row">
+                    <div className="controlPanel d-flex justify-content-between flex-column flex-sm-row mx-3">
                         <div class="form-check form-switch m-2">
                             <input onClick={updatePollCheckboxes} class="form-check-input" type="checkbox" id="pollActiveCheck" defaultChecked={data.active} />
                             <label class="form-check-label" htmlFor="pollActiveCheck">Active</label>
@@ -156,12 +149,13 @@ function PollDetail() {
                         </div>
                         <button className="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#addQuestionModal">Add question</button>
                         <button className="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#deletePollModal">Delete poll</button>
+                        <button className='btn btn-dark m-1'>Copy vote link</button>
                     </div>
                     <ol style={{padding: "0"}}>
                         {data.questions?.map((question) => {
                             return (
                                 <li key={question.id} style={{listStyleType: "none"}}>
-                                    <Question token={token} question={question} fetchData={fetchData}></Question>
+                                    <Question result={props.result} token={token} question={question} fetchData={fetchData}></Question>
                                 </li>
                             )
                         })}

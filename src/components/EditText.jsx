@@ -23,6 +23,16 @@ function EditText(props) {
         setValue(val)
     }
 
+    if(!props.canEdit){
+        return (
+            <div className="d-flex w-100 justify-content-between p-1 editContainer">
+                <div style={{fontSize: props.textSize}}>
+                    {value}
+                </div>
+            </div>
+        )
+    }
+
     
 
     if(edit){

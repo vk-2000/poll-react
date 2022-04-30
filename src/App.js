@@ -5,6 +5,7 @@ import Register from "./components/Register";
 import Home from "./components/Home";
 import PollDetail from "./components/PollDetail";
 import Vote from "./components/Vote";
+import Result from "./components/Result";
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
         <Route path="login" element={<Login />}></Route>
         <Route path="register" element={<Register />}></Route>
         <Route path="home" element={<Home />} />
-        <Route path="poll_detail/:id" element={<PollDetail />} />
+        <Route path="poll_detail/:id" element={<PollDetail result={false} />} />
         <Route path="vote/:id" element={<Vote />} />
+        <Route path="result/:id" element={<Result />} />
       </Routes>
     </BrowserRouter>
   );

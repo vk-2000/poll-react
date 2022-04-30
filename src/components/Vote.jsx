@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from 'react'
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { BASE_URL } from '../App';
 import Navbar from './Navbar';
 import PollNotActive from './PollNotActive';
@@ -12,6 +12,7 @@ function Vote() {
     const [data, setData] = useState([])
     const [pollLive, setPollLive] = useState(true)
     const [voteChoices, setVoteChoices] = useState({})
+    const navigate = useNavigate()
 
     let fetchData = () => {
         fetch(BASE_URL + "vote_api/vote/" + id, {
@@ -26,6 +27,7 @@ function Vote() {
             }
             else{
                 setData(data)
+                console.log(data);
             }
         }))
         
@@ -50,8 +52,13 @@ function Vote() {
             headers: {
                 "Content-type": "Application/json"
             }
-        }).then(response => response.json())
-        .then(data => console.log(data))
+        }).then(response => {
+            if(response.status == 200){
+                if(data.result_public){
+                    navigate("/result/" + data.id)
+                }
+            }
+        })
     }
     if(! pollLive){
         return (
