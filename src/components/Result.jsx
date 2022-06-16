@@ -53,7 +53,17 @@ function Result() {
         return (
             <div>
                 <Navbar></Navbar>
-                Result not available
+                <div className='d-flex' style={{height: "90vh"}}>
+                    <div className='row justify-content-center m-0 align-self-center w-100'>
+                        <div className='col col-sm-6 col-md-4 justify-content-center'>
+                            <img className='img-fluid w-100 p-3' src="https://i1.wp.com/sydneyad.com.au/wp-content/uploads/2020/03/no-public-access-PH022.jpg?fit=567%2C567&ssl=1" alt="" />
+                        </div>
+                        <div className='display-5 text-center m-3'>
+                            Result of this poll is not publicly available
+                        </div>
+
+                    </div>
+                </div>
             </div>
         )
     }

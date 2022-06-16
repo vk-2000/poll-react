@@ -134,7 +134,7 @@ function PollDetail(props) {
 
             
 
-            <div className="col col-md-8 mx-auto">
+            <div className="col col-md-7 mx-auto">
                 <div className="w-100 container p-0">
                     <EditText canEdit={!props.result} pk={data.id} onSave={updatePollName} textSize="2rem" value={data.name}></EditText>
 

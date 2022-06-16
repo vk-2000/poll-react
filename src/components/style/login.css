@@ -1,5 +1,6 @@
 .formContainer {
     padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.722);
     border-radius: .5rem;
+    backdrop-filter: blur(2px);
+    background-color: rgba(43, 43, 43, 0.078);
 }

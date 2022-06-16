@@ -38,11 +38,11 @@ function Login() {
     return (
         <div>
             <Navbar></Navbar>
-            <div className='d-flex align-items-center justify-content-center'>
-                <div className='row w-100 justify-content-center'>
+            <div className='d-flex align-items-center justify-content-center' style={{height:"90vh"}}>
+                <div className='row w-100 justify-content-center px-3'>
                     <div className='formContainer col-sm-6 col-md-4 m-3'>
                         <form className='d-flex flex-column'>
-                            <div style={{textAlign: "center"}} className='display-6 p-3'>Login</div>
+                            <div style={{textAlign: "center"}} className='display-6 p-3 fw-bold'>LOGIN</div>
                             <img className='mx-auto p-3' src={loginImg} alt="login img" width="70%"/>
                             <div class="mb-3">
                               <label for="formUsername" class="form-label">Username</label>

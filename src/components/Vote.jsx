@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router';
 import { BASE_URL } from '../App';
 import Navbar from './Navbar';
 import PollNotActive from './PollNotActive';
+import Voted from './Voted';
 
 function Vote() {
 
@@ -10,7 +11,8 @@ function Vote() {
     let id = params.id
 
     const [data, setData] = useState([])
-    const [pollLive, setPollLive] = useState(true)
+    const [pollNotLive, setPollNotLive] = useState(false)
+    const [voted, setVoted] = useState(false)
     const [voteChoices, setVoteChoices] = useState({})
     const navigate = useNavigate()
 
@@ -23,7 +25,10 @@ function Vote() {
         }).then(response => response.json()
         .then(data => {
             if(response.status == 403){
-                setPollLive(false)
+                console.log(data);
+                setData(data)
+                if(data.error_code == 1) setPollNotLive(true)
+                else if (data.error_code == 2) setVoted(true)
             }
             else{
                 setData(data)
@@ -40,15 +45,16 @@ function Vote() {
 
     let submitVote = (event) => {
         event.preventDefault()
-        let choices = []
+        let id = data.id
+        let body = {poll: data.id, choices: []}
         for(let question of data.questions ){
             let choice =document.querySelector(`input[name="Question${question.id}"]:checked`).value;
-            choices.push(choice)
+            body.choices.push(choice)
         }
 
         fetch(BASE_URL + "vote_api/vote/" + data.id, {
             method: "POST",
-            body: JSON.stringify(choices),
+            body: JSON.stringify(body),
             headers: {
                 "Content-type": "Application/json"
             }
@@ -57,16 +63,27 @@ function Vote() {
                 if(data.result_public){
                     navigate("/result/" + data.id)
                 }
+                else{
+                    window.location.reload()
+                }
             }
         })
     }
-    if(! pollLive){
+    if(pollNotLive){
         return (
             <div>
                 <Navbar></Navbar>
                 <PollNotActive></PollNotActive>
             </div>
             )
+    }
+    if(voted){
+        return(
+            <div>
+                <Navbar></Navbar>
+                <Voted></Voted>
+            </div>
+        )
     }
     return (
         <div>

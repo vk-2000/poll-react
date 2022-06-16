@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BASE_URL } from '../App';
 
 class Register extends Component {
     constructor(props) {
@@ -45,7 +46,7 @@ class Register extends Component {
         event.preventDefault()
 
         let data = JSON.stringify(this.state)
-        fetch("http://127.0.0.1:8000/test_api/register",{
+        fetch(BASE_URL + "vote_api/register",{
             method: 'POST',
             body: data,
             headers: {

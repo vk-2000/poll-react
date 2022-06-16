@@ -5,7 +5,7 @@ import { Authentication } from './Authentication';
 import Navbar from './Navbar';
 import PollCard from './PollCard';
 import "../components/style/poll_card.css"
-
+import home_bg from "../images/home_bg.jpg"
 
 class Home extends Component {
     constructor(props) {
